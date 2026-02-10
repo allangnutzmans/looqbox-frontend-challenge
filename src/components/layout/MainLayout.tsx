@@ -1,6 +1,7 @@
 import React from "react";
 import { Flex, Layout } from "antd";
 import { UiHeader } from "./nav-bar/UiHeader";
+import Sider from "antd/es/layout/Sider";
 
 const { Header, Footer, Content } = Layout;
 // TODO AJUSTAR RESPONSIVIDADE DAS MARGENS E DISPOSIÇÃO DOS CARDS - PRECISA ? Ver no README
@@ -12,7 +13,6 @@ const headerStyle: React.CSSProperties = {
 };
 
 const contentStyle: React.CSSProperties = {
-  textAlign: "center",
   minHeight: 120,
   padding: "2em",
 };
@@ -32,7 +32,7 @@ const layoutStyle = {
 
 // TODO: ElementType ou FC ?
 const MainLayout: React.ElementType<{ children: React.ReactNode }> = ({ children }) => (
-  <Flex gap="middle" style={{ margin: "2em" }} wrap>
+  <Flex gap="middle" justify="center" style={{ margin: "2em", maxWidth: "1680px" }} wrap>
     <div style={{ width: "100%", position: "sticky", top: 32 }}>
       <Header style={headerStyle}>
         <UiHeader />
@@ -45,6 +45,7 @@ const MainLayout: React.ElementType<{ children: React.ReactNode }> = ({ children
         </Content>
       </Layout>
       <Footer style={footerStyle}>Footer</Footer>
+
     </Layout>
 
     {/* With SIDER LAYOUT */}
