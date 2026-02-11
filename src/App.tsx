@@ -4,14 +4,18 @@ import UiLayout from "./components/layout/MainLayout";
 import { ConfigProvider } from "antd";
 import { THEME } from "./components/theme";
 import { Outlet } from "react-router";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 function App() {
   return (
-    <ConfigProvider theme={THEME}>
-      <UiLayout>
-        <Outlet />
-      </UiLayout>
-    </ConfigProvider>
+    <Provider store={store}>
+      <ConfigProvider theme={THEME}>
+        <UiLayout>
+          <Outlet />
+        </UiLayout>
+      </ConfigProvider>
+    </Provider>
   );
 }
 
