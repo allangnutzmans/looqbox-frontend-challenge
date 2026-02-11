@@ -89,14 +89,14 @@ export const POKEDEX_LIST_BASE = {
     ]
 }
 
-export type Pokemon = {
+export type PokemonPreview = {
     id: number;
     name: string;
     image: string;
     types: string[];
 }
 
-export const POKEDEX_LIST_DETAILS: Pokemon[] = [
+export const POKEDEX_LIST_DETAILS: PokemonPreview[] = [
     {
         "id": 1,
         "name": "bulbasaur",
@@ -271,7 +271,7 @@ export const POKEDEX_LIST_DETAILS: Pokemon[] = [
 ]
 
 // Probably will remain as a constant
-export const POKE_TYPES: Record<string, string> = {
+export const POKE_TYPES_COLOR: Record<string, string> = {
   normal: "#A8A77A",
   fire: "#EE8130",
   water: "#6390F0",
