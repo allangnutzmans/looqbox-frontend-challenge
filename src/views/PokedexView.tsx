@@ -1,28 +1,22 @@
 import Sider from "antd/es/layout/Sider";
-import { POKE_TYPES_COLOR, POKEDEX_LIST_DETAILS, type PokemonPreview } from "../api/MOCKs";
+import { POKE_TYPES_COLOR, POKEDEX_LIST_DETAILS } from "../api/MOCKs";
 import { UiSearchBar } from "../components/base/UiSearchBar";
 import { Card, Flex, Badge, Pagination, Layout, Typography } from 'antd';
-import { PokeDetails } from "../components/PokeDetails";
-import { useState } from "react";
 import UiTag from "../components/base/UiTag";
+import { Outlet, useNavigate, useParams } from "react-router";
 
 export const PokedexView = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
+
   const searchBarStyle = {
     width: '100%',
     maxWidth: '500px',
   }
 
-  const [selectedPokemon, setSelectedPokemon] = useState<PokemonPreview | null>(null);
-
-  const handleSelectPokemon = (pokemon: PokemonPreview) => {
-    setSelectedPokemon(pokemon);
-  };
-
-
-
   return (
     <Layout>
-      <div>
+      <div style={{ flex: 1 }}>
         <Flex justify="start" style={{ marginBottom: "2em" }}>
           <UiSearchBar style={searchBarStyle} />
         </Flex>
@@ -32,7 +26,7 @@ export const PokedexView = () => {
               hoverable
               style={{ width: 240 }}
               key={pokemon.id}
-              onClick={() => handleSelectPokemon(pokemon)}
+              onClick={() => navigate(`/pokemon/${pokemon.id}`)}
             >
               <Flex justify="end">
                 <Badge color="gray" count={`# ${pokemon.id}`} />
@@ -46,6 +40,7 @@ export const PokedexView = () => {
               <Flex justify="center" gap="middle">
                 {pokemon.types.map((type) => (
                   <UiTag
+                    key={type}
                     name={type}
                     color={POKE_TYPES_COLOR[type]}
                   />
@@ -58,9 +53,10 @@ export const PokedexView = () => {
           <Pagination defaultCurrent={1} total={50} />
         </Flex>
       </div>
-      {selectedPokemon && (
+
+      {id && (
         <Sider style={{ minWidth: "400px", backgroundColor: "transparent" }} width="30%">
-          <PokeDetails pokemon={selectedPokemon} />
+          <Outlet />
         </Sider>
       )}
     </Layout>
