@@ -1,11 +1,12 @@
 import React from "react";
 import { Badge, Card, Col, Divider, Flex, Progress, Row, Tag, Typography } from "antd";
 import { type Pokemon } from "../api/POKE_DETAILS";
-import { BULBASAUR } from "../api/POKE_DETAILS";
 import { POKE_TYPES_COLOR } from "../api/MOCKs";
 import UiTag from "./base/UiTag";
 import { calcPokeStatsPercentage, getPokeHeight, getPokeWeight } from "../utils/helpers";
 import { IconBoltFilled, IconHeartFilled, IconShieldFilled, IconSwords, IconBadgeFilled, IconGalaxy } from "@tabler/icons-react";
+import { useGetPokemonByIdQuery } from "../api/client";
+import { useParams } from "react-router";
 
 const POKE_STATS_BASE: Record<string, {
     color: string;
@@ -44,8 +45,14 @@ const POKE_STATS_BASE: Record<string, {
     }
 }
 
-export const PokeDetails = (/* { pokemon }: { pokemon: Pokemon } */) => {
-    const pokemon: Pokemon = BULBASAUR;
+export const PokeDetails = () => {
+    const { id } = useParams();
+    const { data: pokemon, error } = useGetPokemonByIdQuery(id);
+
+
+    if (error || !pokemon) {
+        return null;
+    }
 
     // get image
     const sprite = pokemon.sprites.other?.["official-artwork"]?.front_default ?? pokemon.sprites.front_default;
