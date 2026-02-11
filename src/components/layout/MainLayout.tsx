@@ -1,65 +1,50 @@
 import React from "react";
-import { Flex, Layout } from "antd";
+import { Layout } from "antd";
 import { UiHeader } from "./nav-bar/UiHeader";
-import Sider from "antd/es/layout/Sider";
+import { UiContainer } from "../base/UiContainer";
+import PerfectScrollbar from 'react-perfect-scrollbar'
 
 const { Header, Footer, Content } = Layout;
+
 // TODO AJUSTAR RESPONSIVIDADE DAS MARGENS E DISPOSIÇÃO DOS CARDS - PRECISA ? Ver no README
 const headerStyle: React.CSSProperties = {
   textAlign: "center",
   height: 64,
   paddingInline: 0,
+  padding: "1em 0",
   backgroundColor: "var(--bg-color)",
+  zIndex: 10,
 };
 
 const contentStyle: React.CSSProperties = {
   minHeight: 120,
-  padding: "2em",
+  padding: "1em",
 };
 
 const footerStyle: React.CSSProperties = {
   textAlign: "center",
-  backgroundColor: "#EFEFEE",
-  border: "1px solid red",
-};
-
-const layoutStyle = {
-  overflow: "hidden",
-  margin: "0 40px",
-  width: "100%",
-  maxWidth: "100%",
+  bottom: 0,
 };
 
 // TODO: ElementType ou FC ?
 const MainLayout: React.ElementType<{ children: React.ReactNode }> = ({ children }) => (
-  <Flex gap="middle" justify="center" style={{ margin: "2em", maxWidth: "1680px" }} wrap>
-    <div style={{ width: "100%", position: "sticky", top: 32 }}>
-      <Header style={headerStyle}>
+  <Layout style={{ height: "100vh" }}>
+    <Header style={headerStyle}>
+      <UiContainer>
         <UiHeader />
-      </Header>
-    </div>
-    <Layout style={layoutStyle}>
-      <Layout>
+      </UiContainer>
+    </Header>
+    <Layout>
+      <PerfectScrollbar>
         <Content style={contentStyle}>
-          {children}
+          <UiContainer>
+            {children}
+          </UiContainer>
         </Content>
-      </Layout>
+      </PerfectScrollbar>
       <Footer style={footerStyle}>Footer</Footer>
-
     </Layout>
-
-    {/* With SIDER LAYOUT */}
-    {/* <Layout style={layoutStyle}>
-      <Header style={headerStyle}>Header</Header>
-      <Layout>
-        <Content style={contentStyle}>Content</Content>
-        <Sider width="25%" style={siderStyle}>
-          Sider
-        </Sider>
-      </Layout>
-      <Footer style={footerStyle}>Footer</Footer>
-    </Layout> */}
-  </Flex>
+  </Layout>
 );
 
 export default MainLayout;
