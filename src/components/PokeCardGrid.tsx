@@ -1,11 +1,18 @@
 import { Flex, Card, Typography } from "antd";
 import { useNavigate } from "react-router";
 import { useGetPokedexListQuery } from "../api/client";
+import PokemonImage from "./PokemonImage";
 
 interface PokeCardGridProps {
     page: number;
     pageSize: number;
 }
+
+const getPokemonId = (url: string) => {
+    const parts = url.split('/');
+    return parts[parts.length - 2];
+}
+
 
 export const PokeCardGrid = ({ page, pageSize }: PokeCardGridProps) => {
     const navigate = useNavigate();
@@ -20,11 +27,6 @@ export const PokeCardGrid = ({ page, pageSize }: PokeCardGridProps) => {
         return <div>Error...</div>;
     }
 
-    const getPokemonId = (url: string) => {
-        const parts = url.split('/');
-        return parts[parts.length - 2];
-    }
-
     return (
         <Flex wrap gap="large">
             {data?.results.map((pokemon) => (
@@ -35,9 +37,10 @@ export const PokeCardGrid = ({ page, pageSize }: PokeCardGridProps) => {
                     onClick={() => navigate(`/pokemon/${pokemon.name}`)}
                 >
                     <Flex justify="center">
-                        <img
-                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getPokemonId(pokemon.url)}.png`}
-                            alt={pokemon.name} />
+                        <PokemonImage
+                            id={getPokemonId(pokemon.url)}
+                            alt={pokemon.name}
+                        />
                     </Flex>
 
                     <Typography.Title level={5} style={{ textTransform: 'capitalize', marginBottom: "0.5em", textAlign: "center" }}>{pokemon.name}</Typography.Title>
