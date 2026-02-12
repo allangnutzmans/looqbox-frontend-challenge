@@ -28,7 +28,7 @@ export const PokeCardGrid = ({ page, pageSize }: PokeCardGridProps) => {
     }
 
     return (
-        <Flex wrap gap="large">
+        <Flex wrap gap="large" style={{ padding: "1em" }}>
             {data?.results.map((pokemon) => (
                 <Card
                     hoverable

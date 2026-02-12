@@ -4,7 +4,7 @@ import { UiHeader } from "./nav-bar/UiHeader";
 import { UiContainer } from "../base/UiContainer";
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
-const { Header, Footer, Content } = Layout;
+const { Header, Content } = Layout;
 
 // TODO AJUSTAR RESPONSIVIDADE DAS MARGENS E DISPOSIÇÃO DOS CARDS - PRECISA ? Ver no README
 const headerStyle: React.CSSProperties = {
@@ -17,18 +17,18 @@ const headerStyle: React.CSSProperties = {
 };
 
 const contentStyle: React.CSSProperties = {
-  minHeight: 120,
   padding: "1em",
 };
 
-const footerStyle: React.CSSProperties = {
-  textAlign: "center",
-  bottom: 0,
-};
+const backgroundStyle: React.CSSProperties = {
+  minHeight: "100vh",
+  backgroundImage: "url('/poke-background.png')",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat"
+}
 
-// TODO: ElementType ou FC ?
-const MainLayout: React.ElementType<{ children: React.ReactNode }> = ({ children }) => (
-  <Layout style={{ height: "100vh" }}>
+const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <Layout style={backgroundStyle}>
     <Header style={headerStyle}>
       <UiContainer>
         <UiHeader />
@@ -42,7 +42,6 @@ const MainLayout: React.ElementType<{ children: React.ReactNode }> = ({ children
           </UiContainer>
         </Content>
       </PerfectScrollbar>
-      <Footer style={footerStyle}>Footer</Footer>
     </Layout>
   </Layout>
 );
