@@ -2,9 +2,15 @@ import { Flex, Card, Typography } from "antd";
 import { useNavigate } from "react-router";
 import { useGetPokedexListQuery } from "../api/client";
 
-export const PokeCardGrid = () => {
+interface PokeCardGridProps {
+    page: number;
+    pageSize: number;
+}
+
+export const PokeCardGrid = ({ page, pageSize }: PokeCardGridProps) => {
     const navigate = useNavigate();
-    const { data, isLoading, error } = useGetPokedexListQuery();
+    const { data, isLoading, error } = useGetPokedexListQuery({ page, pageSize });
+
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -35,17 +41,6 @@ export const PokeCardGrid = () => {
                     </Flex>
 
                     <Typography.Title level={5} style={{ textTransform: 'capitalize', marginBottom: "0.5em", textAlign: "center" }}>{pokemon.name}</Typography.Title>
-                    {/*
-                    // API LIMITATION
-                    <Flex justify="center" gap="middle">
-                        {pokemon.types.map((type) => (
-                            <UiTag
-                                key={type}
-                                name={type}
-                                color={POKE_TYPES_COLOR[type]}
-                            />
-                        ))}
-                    </Flex> */}
                 </Card>
             ))}
         </Flex>

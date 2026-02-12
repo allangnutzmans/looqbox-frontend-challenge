@@ -22,8 +22,12 @@ export const client = createApi({
         baseUrl: BASE_URL
     }),
     endpoints: (builder) => ({
-        getPokedexList: builder.query<ListResponse<PokemonListResult>, void>({
-            query: () => `pokemon?limit=21&offset=0`
+        getPokedexList: builder.query<ListResponse<PokemonListResult>, { page?: number, pageSize?: number } | void>({
+            query: (params) => {
+                const { page = 1, pageSize = 21 } = params || {};
+                const offset = (page - 1) * pageSize;
+                return `pokemon?limit=${pageSize}&offset=${offset}`;
+            }
         }),
         getPokemonById: builder.query<Pokemon, string>({
             query: (id) => `pokemon/${id}`
