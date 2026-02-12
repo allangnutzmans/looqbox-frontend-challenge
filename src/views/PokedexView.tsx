@@ -1,7 +1,7 @@
 import Sider from "antd/es/layout/Sider";
 import { UiSearchBar } from "../components/base/UiSearchBar";
 import { Flex, Pagination, Layout } from 'antd';
-import { Outlet, useParams } from "react-router";
+import { Outlet, useNavigate, useParams } from "react-router";
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { PokeCardGrid } from "../components/PokeCardGrid";
 import { useState, useEffect } from "react";
@@ -9,6 +9,7 @@ import { usePrefetch } from "../api/client";
 
 export const PokedexView = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const pageSize = 21;
   const prefetchList = usePrefetch('getPokedexList');
@@ -27,7 +28,10 @@ export const PokedexView = () => {
     <Layout>
       <Flex vertical justify="start">
         <div style={{ padding: "1em 0" }}>
-          <UiSearchBar style={searchBarStyle} />
+          <UiSearchBar
+            style={searchBarStyle}
+            onSearch={(value) => value && navigate(`/pokemon/${value.toLowerCase()}`)}
+          />
         </div>
         <PerfectScrollbar style={{ marginInlineEnd: "1em" }}>
           <div style={{ flex: 1, maxHeight: "calc(100vh - 264px)" }}>

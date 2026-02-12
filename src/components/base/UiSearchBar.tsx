@@ -6,6 +6,6 @@ type SearchProps = GetProps<typeof Input.Search>;
 const { Search } = Input;
 export const UiSearchBar = (props: SearchProps) => {
     return (
-        <Search placeholder="Search your Pokémon!" {...props} />
+        <Search placeholder="Search your Pokémon!" onSearch={props.onSearch} enterButton {...props} />
     );
 };
