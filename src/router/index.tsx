@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router"
+import { createBrowserRouter, Navigate } from "react-router"
 import App from "../App"
 import { PokedexView } from "../views/PokedexView"
 import { StatsView } from "../views/StatsView"
@@ -24,5 +24,9 @@ export const router = createBrowserRouter([
         element: <StatsView />
       }
     ]
-  }
+  },
+  {
+    path: "*",
+    element: <Navigate to="/" replace />,
+  },
 ]);

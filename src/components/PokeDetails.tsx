@@ -58,7 +58,7 @@ export const PokeDetails = () => {
     const sprite = pokemon.sprites.other?.["official-artwork"]?.front_default ?? pokemon.sprites.front_default ?? "/img-question.png";
 
     return (
-        <Card variant="outlined" style={{ overflow: 'hidden' }}>
+        <Card variant="outlined" style={{ overflow: 'hidden', minHeight: "100%", marginTop: "4em" }}>
 
             {/* Header */}
             <Flex justify="end">
