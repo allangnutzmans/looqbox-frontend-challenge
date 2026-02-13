@@ -1,58 +1,23 @@
-import { Flex, Tabs, type TabsProps } from "antd";
-import { UiSheet } from "../../base/UiSheet";
-import HomeIcon from "../../icons/HomeIcon";
+import { Flex, Typography, theme } from "antd";
 import PokeballIcon from "../../icons/PokeballIcon";
-import { router } from "../../../router";
-
-// TODO: UNDERSTAND THIS TYPE
-type NavigationItem = NonNullable<TabsProps['items']>[number] & { path: string };
 
 export const UiHeader = () => {
-    const items: NavigationItem[] = [
-        {
-            label: "Pokedex",
-            path: "/",
-            key: "1",
-            icon: <HomeIcon />
-        },
-        {
-            label: "Stats",
-            path: "/stats",
-            key: "2",
-            icon: <PokeballIcon />
-
-        },
-    ];
-
-    const handleTabChange = (key: string) => {
-        const item = items.find(i => i.key === key);
-        if (item?.path) {
-            router.navigate(item.path);
-        }
-    };
+    const { token } = theme.useToken();
 
     return (
         <Flex justify="center">
-            <UiSheet
-                variant="outline"
-                rounded="lg"
-                elevated={true}
-                style={{
-                    padding: "0rem 1rem 0 1rem",
-                    minWidth: "500px",
-                }}
-            >
-                <Tabs
-                    items={items}
-                    onChange={handleTabChange}
-                    centered
-                    size="large"
-                    style={{
-                        /* This removes the tab's ANTD default horizontal margin */
-                        "--ant-tabs-horizontal-margin": "0 0 0 0",
-                    } as React.CSSProperties}
-                />
-            </UiSheet>
+            <Flex style={{
+                padding: "0rem 1rem 0 1rem",
+                minWidth: "500px",
+                minHeight: "75px",
+            }} justify="center" align="center">
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <Typography.Title level={2} style={{ margin: 0, color: token.colorText }}>
+                        Pokédex
+                        <PokeballIcon color={token.colorPrimary} style={{ marginLeft: "0.5em" }} />
+                    </Typography.Title>
+                </div>
+            </Flex>
         </Flex>
     );
 };

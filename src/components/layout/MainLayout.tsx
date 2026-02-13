@@ -5,7 +5,6 @@ import { UiContainer } from "../base/UiContainer";
 
 const { Header, Content } = Layout;
 
-// TODO AJUSTAR RESPONSIVIDADE DAS MARGENS E DISPOSIÇÃO DOS CARDS - PRECISA ? Ver no README
 const headerStyle: React.CSSProperties = {
   textAlign: "center",
   height: 64,
