@@ -1,5 +1,5 @@
 import React from "react";
-import { Badge, Card, Col, Divider, Flex, Progress, Row, Tag, Typography } from "antd";
+import { Badge, Card, Col, Divider, Flex, Progress, Row, Tag, Typography, Image } from "antd";
 import { type Pokemon } from "../api/POKE_DETAILS";
 import { POKE_TYPES_COLOR } from "../api/MOCKs";
 import UiTag from "./base/UiTag";
@@ -51,7 +51,13 @@ export const PokeDetails = () => {
 
 
     if (error || !pokemon) {
-        return null;
+        return (
+            <Flex vertical justify="center" align="center" style={{ margin: '1em', height: "calc(100% - 10em)" }}>
+                <Typography.Title level={3}>Pokemon not found</Typography.Title>
+                <img src="/img-question.png" style={{ width: 200 }} />
+                <Typography.Text type="secondary">Please try again</Typography.Text>
+            </Flex >
+        );
     }
 
     // get image
