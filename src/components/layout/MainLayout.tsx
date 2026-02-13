@@ -2,7 +2,6 @@ import React from "react";
 import { Layout } from "antd";
 import { UiHeader } from "./nav-bar/UiHeader";
 import { UiContainer } from "../base/UiContainer";
-import PerfectScrollbar from 'react-perfect-scrollbar'
 
 const { Header, Content } = Layout;
 
@@ -21,10 +20,11 @@ const contentStyle: React.CSSProperties = {
 };
 
 const backgroundStyle: React.CSSProperties = {
-  minHeight: "100vh",
+  height: "100vh",
   backgroundImage: "url('/poke-background.png')",
   backgroundSize: "cover",
-  backgroundRepeat: "no-repeat"
+  backgroundRepeat: "no-repeat",
+  overflow: "hidden",
 }
 
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -34,14 +34,12 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
         <UiHeader />
       </UiContainer>
     </Header>
-    <Layout>
-      <PerfectScrollbar>
-        <Content style={contentStyle}>
-          <UiContainer>
-            {children}
-          </UiContainer>
-        </Content>
-      </PerfectScrollbar>
+    <Layout style={{ background: "transparent", overflow: "hidden" }}>
+      <Content style={{ ...contentStyle, display: "flex", flexDirection: "column" }}>
+        <UiContainer>
+          {children}
+        </UiContainer>
+      </Content>
     </Layout>
   </Layout>
 );

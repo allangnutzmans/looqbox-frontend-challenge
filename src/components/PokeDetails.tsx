@@ -47,7 +47,7 @@ const POKE_STATS_BASE: Record<string, {
 
 export const PokeDetails = () => {
     const { id } = useParams();
-    const { data: pokemon, error } = useGetPokemonByIdQuery(id);
+    const { data: pokemon, error } = useGetPokemonByIdQuery(id as string);
 
 
     if (error || !pokemon) {
@@ -58,7 +58,7 @@ export const PokeDetails = () => {
     const sprite = pokemon.sprites.other?.["official-artwork"]?.front_default ?? pokemon.sprites.front_default ?? "/img-question.png";
 
     return (
-        <Card variant="outlined" style={{ overflow: 'hidden', minHeight: "100%", marginTop: "4em" }}>
+        <Card hoverable style={{ overflow: 'auto', minHeight: "calc(100% - 10em)", margin: "1em 2em 0 2em" }}>
 
             {/* Header */}
             <Flex justify="end">
