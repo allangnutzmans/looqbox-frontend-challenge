@@ -1,91 +1,82 @@
-# React + TypeScript + Vite
+# Pokédex
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+- This project is a technical challenge for the Frontend Developer position.
+- The main goal is to build a Pokemon search app that uses the PokeAPI to fetch Pokemon data and display display it. Full details are available in the `ASSIGNMENT.md` file.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## How to run this project
 
-## React Compiler
+### Prerequisites
+- Node.js >= 18
+- pnpm
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-    globalIgnores(['dist']),
-    {
-        files: ['**/*.{ts,tsx}'],
-        extends: [
-            // Other configs...
-
-            // Remove tseslint.configs.recommended and replace with this
-            tseslint.configs.recommendedTypeChecked,
-            // Alternatively, use this for stricter rules
-            tseslint.configs.strictTypeChecked,
-            // Optionally, add this for stylistic rules
-            tseslint.configs.stylisticTypeChecked,
-
-            // Other configs...
-        ],
-        languageOptions: {
-            parserOptions: {
-                project: ['./tsconfig.node.json', './tsconfig.app.json'],
-                tsconfigRootDir: import.meta.dirname,
-            },
-            // other options...
-        },
-    },
-]);
+### Steps
+```bash
+pnpm install
+pnpm dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Project structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+- `src/components/base`: Presentational components (Pure).
+- `src/components/layout`: Layout components.
+- `src/components/`: Logical components (Smart).
+- `src/views`: Page components.
+- `src/api`: API services.
+- `src/index.css`: Global styles override.
+- `src/utils`: Helper functions and constants.
 
-export default defineConfig([
-    globalIgnores(['dist']),
-    {
-        files: ['**/*.{ts,tsx}'],
-        extends: [
-            // Other configs...
-            // Enable lint rules for React
-            reactX.configs['recommended-typescript'],
-            // Enable lint rules for React DOM
-            reactDom.configs.recommended,
-        ],
-        languageOptions: {
-            parserOptions: {
-                project: ['./tsconfig.node.json', './tsconfig.app.json'],
-                tsconfigRootDir: import.meta.dirname,
-            },
-            // other options...
-        },
-    },
-]);
-```
+## Requirements and bonus points attended:
 
-// TODO -
-[X] Read the todos
-[x] Add a backgorund
-[x] Fix Layout, Footer and header
-[X] Add or remove Stats views
-[x] CHECK THE PREFETCH!
-[x] TOTAL ==> CLEAN UP
-[x] ALINHAR ICONES DO HEADER
+Requirements:
 
-[] Check the assignment.md files and requirements
-[] Do one ore 2 tests
-[] Linter
-[] Formatter
+- [x] On the main page, include a search bar and a preloaded list of Pokémon.
+- [x] Clicking on any Pokémon should display a card, modal, or page with that Pokémon’s information.
+- [x] Typing in the search bar and pressing Enter should display the search result instead of the list.
+- [x] Your app must include at least two different routes (e.g., /home, /details — be creative!).
+- [x] Add a README file to document your project.
 
-// Responsividade ? - Faria com mais tempo
+Bonus points:
+
+- [x] Pagination
+- [x] Error handling
+- [x] Documentation
+- [x] Linting
+- [x] Unit Testing
+- [x] Ant Design
+- [ ] Charts
+
+## Technologies used
+
+- React
+- React Router
+- Redux & RTK
+- Ant Design
+- TypeScript
+- Vite
+- ESLint
+- Prettier
+- Vitest
+
+## Implementation
+
+- **Organization by responsibility**: The project structure have a clear separation between concerns, making the codebase easier to maintain and extend:
+    - _Logical Components_ (Smart): Handle state, and business logic (e.g., `PokeCardGrid`, `PokeDetails`).
+    - _Presentational Components_ (Pure): Focused solely on rendering UI based on props (e.g. `UiTag`, `UiContainer`, `UiSearchBar`), ensuring a scalable and testable architecture `/src/components/base`.
+    - _State Management_ (Redux & RTK): Manage application state and provide a global state management solution `/src/store`.
+    - _API Services_ (Redux & RTK): Manage API calls and provide a global state management solution `/src/api`.
+
+## What I would change if I had more time
+
+- Show all available images in the pokemons details view
+- Compare stats between pokemons with charts
+- Improve the responsive design
+
+## Design decisions
+
+- Minimal dependencies: I preferred to use only the antd libraries to retain full control over layout behavior and styling.
+- Component organization: I used a component organization strategy that separates concerns between logical and presentational components, making the codebase easier to maintain and extend.
+- Inspiration: The visual identity was inspired by ![Design inspiration](https://dribbble.com/shots/15128634-Pokemon-Pokedex-Website-Redesign-Concept)
+
+![Design inspiration](https://cdn.dribbble.com/userupload/30658222/file/original-8b4161c80979570ab0070a85bee765f7.gif)
