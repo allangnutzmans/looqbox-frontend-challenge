@@ -9,7 +9,14 @@ interface PokemonImageProps {
     style?: React.CSSProperties;
 }
 
-const PokemonImage: React.FC<PokemonImageProps> = ({ id, alt, width = 200, height = 200, className, style }) => {
+const PokemonImage: React.FC<PokemonImageProps> = ({
+    id,
+    alt,
+    width = 200,
+    height = 200,
+    className,
+    style,
+}) => {
     const officialArtwork = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
     const defaultSprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
     const questionMark = '/img-question.png';

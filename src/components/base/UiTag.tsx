@@ -1,13 +1,13 @@
-import { Tag, type TagProps } from "antd"
+import { Tag, type TagProps } from 'antd';
 
 const UiTag = ({
     name,
     color,
-    props
+    props,
 }: {
-    name: string,
-    color?: string,
-    props?: TagProps
+    name: string;
+    color?: string;
+    props?: TagProps;
 }) => {
     return (
         <Tag
@@ -22,7 +22,7 @@ const UiTag = ({
         >
             {name}
         </Tag>
-    )
-}
+    );
+};
 
 export default UiTag;

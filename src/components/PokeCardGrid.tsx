@@ -1,7 +1,7 @@
-import { Flex, Card, Typography } from "antd";
-import { useNavigate } from "react-router";
-import { useGetPokedexListQuery } from "../api/client";
-import PokemonImage from "./PokemonImage";
+import { Flex, Card, Typography } from 'antd';
+import { useNavigate } from 'react-router';
+import { useGetPokedexListQuery } from '../api/client';
+import PokemonImage from './PokemonImage';
 
 interface PokeCardGridProps {
     page: number;
@@ -11,13 +11,14 @@ interface PokeCardGridProps {
 const getPokemonId = (url: string) => {
     const parts = url.split('/');
     return parts[parts.length - 2];
-}
-
+};
 
 export const PokeCardGrid = ({ page, pageSize }: PokeCardGridProps) => {
     const navigate = useNavigate();
-    const { data, isLoading, error } = useGetPokedexListQuery({ page, pageSize });
-
+    const { data, isLoading, error } = useGetPokedexListQuery({
+        page,
+        pageSize,
+    });
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -28,7 +29,7 @@ export const PokeCardGrid = ({ page, pageSize }: PokeCardGridProps) => {
     }
 
     return (
-        <Flex wrap gap="large" style={{ padding: "1em" }}>
+        <Flex wrap gap="large" style={{ padding: '1em' }}>
             {data?.results.map((pokemon) => (
                 <Card
                     hoverable
@@ -43,9 +44,18 @@ export const PokeCardGrid = ({ page, pageSize }: PokeCardGridProps) => {
                         />
                     </Flex>
 
-                    <Typography.Title level={5} style={{ textTransform: 'capitalize', marginBottom: "0.5em", textAlign: "center" }}>{pokemon.name}</Typography.Title>
+                    <Typography.Title
+                        level={5}
+                        style={{
+                            textTransform: 'capitalize',
+                            marginBottom: '0.5em',
+                            textAlign: 'center',
+                        }}
+                    >
+                        {pokemon.name}
+                    </Typography.Title>
                 </Card>
             ))}
         </Flex>
     );
-}
+};
