@@ -1,11 +1,3 @@
-export type PokemonPreview = {
-    id: number;
-    name: string;
-    image: string;
-    types: string[];
-};
-
-// Probably will remain as a constant
 export const POKE_TYPES_COLOR: Record<string, string> = {
     normal: '#A8A77A',
     fire: '#EE8130',

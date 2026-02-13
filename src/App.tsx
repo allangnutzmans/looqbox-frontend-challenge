@@ -1,4 +1,3 @@
-import './App.css';
 import 'antd/dist/antd.css';
 import UiLayout from './components/layout/MainLayout';
 import { ConfigProvider } from 'antd';
