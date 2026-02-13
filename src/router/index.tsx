@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from "react-router"
 import App from "../App"
 import { PokedexView } from "../views/PokedexView"
 import { PokeDetails } from "../components/PokeDetails";
+import { PokeSearchView } from "../views/PokeSearchView";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
           }
         ]
       },
+      {
+        path: "search/:id",
+        element: <PokeSearchView />
+      }
     ]
   },
   {
