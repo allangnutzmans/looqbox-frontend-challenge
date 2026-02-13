@@ -1,5 +1,6 @@
 import { Flex, Typography, theme } from "antd";
 import PokeballIcon from "../../icons/PokeballIcon";
+import { Link as RouterLink } from "react-router";
 
 export const UiHeader = () => {
     const { token } = theme.useToken();
@@ -11,12 +12,12 @@ export const UiHeader = () => {
                 minWidth: "500px",
                 minHeight: "75px",
             }} justify="center" align="center">
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <RouterLink to="/" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <Typography.Title level={2} style={{ margin: 0, color: token.colorText }}>
                         Pokédex
                         <PokeballIcon color={token.colorPrimary} style={{ marginLeft: "0.5em" }} />
                     </Typography.Title>
-                </div>
+                </RouterLink>
             </Flex>
         </Flex>
     );
