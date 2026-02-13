@@ -21,7 +21,7 @@ export const PokedexView = () => {
 
   return (
     <Layout>
-      <Flex vertical justify="start">
+      <Flex vertical justify="start" style={{ height: "100%" }}>
 
         <PokeSearchBar />
 
