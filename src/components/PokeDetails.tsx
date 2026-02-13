@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     Badge,
+    Button,
     Card,
     Col,
     Divider,
@@ -11,7 +12,7 @@ import {
     Typography,
 } from 'antd';
 import { type Pokemon } from '../api/POKE_DETAILS';
-import { POKE_TYPES_COLOR } from '../api/MOCKs';
+import { POKE_TYPES_COLOR } from '../utils/constants';
 import UiTag from './base/UiTag';
 import {
     calcPokeStatsPercentage,
@@ -25,9 +26,10 @@ import {
     IconSwords,
     IconBadgeFilled,
     IconGalaxy,
+    IconX,
 } from '@tabler/icons-react';
 import { useGetPokemonByIdQuery } from '../api/client';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 const POKE_STATS_BASE: Record<
     string,
@@ -72,6 +74,7 @@ const POKE_STATS_BASE: Record<
 export const PokeDetails = () => {
     const { id } = useParams();
     const { data: pokemon, error } = useGetPokemonByIdQuery(id as string);
+    const navigate = useNavigate();
 
     if (error || !pokemon) {
         return (
@@ -106,8 +109,11 @@ export const PokeDetails = () => {
             }}
         >
             {/* Header */}
-            <Flex justify="end">
+            <Flex justify="space-between">
                 <Badge color="gray" count={`# ${pokemon.id}`} />
+                <Button type="text" onClick={() => navigate('/')}>
+                    <IconX size={20} />
+                </Button>
             </Flex>
             <Flex justify="center">
                 <img
